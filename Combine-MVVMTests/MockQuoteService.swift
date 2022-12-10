@@ -13,6 +13,8 @@ class MockQuoteService: QuoteServiceType {
 
     var value: AnyPublisher<Quote, Error>?
     func getRandomQuote() -> AnyPublisher<Quote, Error> {
-        return value ?? Empty().eraseToAnyPublisher()
+        return Just(Quote(content: "My quote", author: "Jalil"))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
